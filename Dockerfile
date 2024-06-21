@@ -1,8 +1,20 @@
-# Use the official httpd (Apache HTTP Server) image from Docker Hub
-FROM httpd:2.4
+# Use the official Nginx image from the Docker Hub
+FROM nginx:alpine
 
-# Copy the contents of the project to the default httpd directory
-COPY . /usr/local/apache2/htdocs/
+# Copy the contents of the project to the default Nginx directory
+COPY . /usr/share/nginx/html
+
+# Copy the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
 
 # Expose port 80
 EXPOSE 80
+
+# Set the entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
