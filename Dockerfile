@@ -1,11 +1,8 @@
-# Use the official Nginx image from the Docker Hub
-FROM nginx:latest
+# Use the official httpd (Apache HTTP Server) image from Docker Hub
+FROM httpd:2.4
 
-# Copy the contents of the project to the default Nginx directory
-COPY . /usr/share/nginx/html
+# Copy the contents of the project to the default httpd directory
+COPY . /usr/local/apache2/htdocs/
 
 # Expose port 80
 EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
