@@ -4,17 +4,8 @@ FROM nginx:latest
 # Copy the contents of the project to the default Nginx directory
 COPY . /usr/share/nginx/html
 
-# Copy the entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-
-# Make the entrypoint script executable
-RUN chmod +x /entrypoint.sh
-
 # Expose port 80
 EXPOSE 80
-
-# Set the entrypoint
-ENTRYPOINT ["/entrypoint.sh"]
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
