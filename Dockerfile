@@ -14,7 +14,7 @@ RUN chmod +x /entrypoint.sh
 EXPOSE 80
 
 # Set the entrypoint
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [""]
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
