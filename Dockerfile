@@ -13,5 +13,8 @@ RUN chmod +x /entrypoint.sh
 # Expose port 80
 EXPOSE 80
 
+# Override Docker Entrypoint
+ENTRYPOINT []
+
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
