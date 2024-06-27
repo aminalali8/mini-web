@@ -6,7 +6,7 @@ COPY . /usr/share/nginx/html
 
 # Add a user with uid 1000 and gid 1000 to run the code-server and Nginx
 RUN addgroup -g 1000 code-server-user && \
-    adduser -D -u 1000 -G code-server-user code-server-user && \ 
+    adduser -D -u 1000 -G code-server-user code-server-user && \
     adduser code-server-user nginx
 
 # Setup the workdir
@@ -22,5 +22,3 @@ EXPOSE 80
 # Set the entrypoint
 ENTRYPOINT [ "/entrypoint.sh" ]
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
