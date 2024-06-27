@@ -13,4 +13,4 @@ RUN addgroup -g 1000 code-server-user && \
 EXPOSE 80
 
 # Run Nginx
-CMD ["sh", "-c", "chown -R code-server-user:nginx /usr/share/nginx/html && nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "chown -R code-server-user:code-server-user /usr/share/nginx/html && nginx -g 'daemon off;'"]
