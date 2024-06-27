@@ -9,17 +9,8 @@ RUN addgroup -g 1000 code-server-user && \
     adduser -D -u 1000 -G code-server-user code-server-user && \
     adduser code-server-user nginx
 
-# Setup the workdir
-WORKDIR /usr/share/nginx/html
-
-# Copy the entrypoint script and make it executable
-RUN ls 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 # Expose port 80
 EXPOSE 80
 
-# Set the entrypoint
-ENTRYPOINT [ "/entrypoint.sh" ]
-
+# Run Nginx
+CMD ["sh", "-c", "chown -R code-server-user:nginx /usr/share/nginx/html && nginx -g 'daemon off;'"]
