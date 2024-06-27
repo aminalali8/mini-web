@@ -1,20 +1,15 @@
 # Use the official Nginx image from the Docker Hub
-FROM --platform=linux/amd64 nginx:alpine
+FROM  nginx:alpine
 
 # Copy the contents of the project to the default Nginx directory
 COPY . /usr/share/nginx/html
 
-# Copy the entrypoint script
-COPY ./entrypoint.sh /entrypoint.sh
-
-# Make the entrypoint script executable
-RUN chmod +x /entrypoint.sh
+# Add a user with uid 1000 and gid 1000
+RUN addgroup -g 1000 code-server-user && \
+    adduser -D -u 1000 -G code-server-user code-server-user
 
 # Expose port 80
 EXPOSE 80
-
-# Override Docker Entrypoint
-ENTRYPOINT []
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
